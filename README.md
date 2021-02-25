@@ -1,6 +1,6 @@
 # DjangoWebSockets-MQTT
 
-##Techincals:
+## Techincals:
 * Building WebSocket API with Django
 * Can implement front-end with Django views only
 * Using Mosquitto framework for MQTT communication

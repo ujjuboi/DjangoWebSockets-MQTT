@@ -1,6 +1,6 @@
 # DjangoWebSockets-MQTT
 
-## Breif Idea:
+## Brief Idea:
 Project can be sub divided as follows:-  
 * We need to register sensors 
 * We need to register client

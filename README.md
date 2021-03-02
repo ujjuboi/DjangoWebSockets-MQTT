@@ -12,3 +12,5 @@ Project can be sub divided as follows:-
 * Can implement front-end with Django views only
 * Using Mosquitto framework for MQTT communication
 * Dashboard implementation through front-end frameworks like AngularJS.
+
+Reminder:exclamation: Delete settings.py (specifically secrey key when deploying the app - generate new one)

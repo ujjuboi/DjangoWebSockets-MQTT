@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,8 +73,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'minor2.wsgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG' : {
+            'hosts': [('localhost', 6380)], #for windows use 6379
+        }
+    }
+}
 
+WSGI_APPLICATION = 'minor2.wsgi.application'
+ASGI_APPLICATION = 'minor2.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

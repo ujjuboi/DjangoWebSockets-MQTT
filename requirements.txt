@@ -1,5 +1,6 @@
-Django==3.1.7
-channels==3.0.3
-channels-redis==3.2.0
-websocket-client==0.58.0
-redis==3.5.3
+Django            ==3.1.7
+channels          ==3.0.3
+channels-redis    ==3.2.0
+websocket-client  ==0.58.0
+redis             ==3.5.3
+websocket         ==8.1

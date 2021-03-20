@@ -19,5 +19,19 @@ class Graph(AsyncWebsocketConsumer):
 
     #recieve
     async def receive(self, text_data):
+
+        data        = json.loads(text_data)
+        actualValue = data['value']
+        await self.channel_layer.group_send(
+            self.groupname,
+            {
+                'type': 'senddata',
+                'value': actualValue,
+            }
+        )
         print('You are in graph page', text_data)
-        pass
+
+    #send data based on recieve group_send()
+    async def senddata(self, event):
+        sendvalue = event['value']
+        await self.send(json.dumps({'value': sendvalue}))

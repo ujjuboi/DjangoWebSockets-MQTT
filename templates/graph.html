@@ -6,6 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minor 2</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- Add WebSocket JS logic here: -->
+    <script>
+        let socket        = new WebSocket("ws://localhost:8000/ws/graph/");
+        //add websocket functions here:
+        socket.onopen     = function(e){
+            alert("Connection Established");
+        };
+        //actual updation logic: (Target specific data array)
+        socket.onmessage  = function(e){
+            console.log(e.data);
+            recvData                                  = JSON.parse(e.data);
+            newActualData                             = actualData['data']['datasets'][0]['data'];
+            newActualData.shift();
+            newActualData.push(recvData.value);
+            actualData['data']['datasets'][0]['data'] = newActualData;
+            window.myChart.update()
+        };
+
+        socket.onclose  = function(e){
+            alert("Connection Closed");
+        };
+    </script>
+    <!--Add Custom Styles Here:-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Merriweather&display=swap');
         body{
@@ -21,14 +44,14 @@
     <div style="max-height: 700px; max-width: 500px;">
         <canvas id="myChart" width="400" height="400"></canvas>
         <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
+        //Add Data variable here:
+        var actualData = {
             type: 'bar',
             data: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                 datasets: [{
                     label: 'Real time data',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [50,40,30,25,45,65],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -57,7 +80,10 @@
                     }]
                 }
             }
-        });
+        }; 
+        var ctx        = document.getElementById('myChart').getContext('2d');
+        //pass Data variable here:
+        window.myChart = new Chart(ctx, actualData);
         </script>
     </div>  
 </body>

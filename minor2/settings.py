@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'oeyb&wi9$!5fm@!ygt2#o#$!e)lb0gyjaq!@9rlqvc9!y&g%ja'
+SECRET_KEY = '^lwg$xt&a@=eh&096*&f37faj6zl^u7j!=o^cjui)%tofq5ht&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,7 +77,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG' : {
-            'hosts': [('localhost', 6380)], #for windows use 6379
+            'hosts': [('localhost', 6379)], #for windows use 6379
         }
     }
 }

@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from firstpage.views import Firstpage
+from django.conf.urls import include
+# from firstpage.views import Firstpage
 from graph.views import Graph
 
 urlpatterns = [
-    path('', Firstpage, name="Homepage"),
+    path('', include('firstpage.urls')),
     path('graph/', Graph, name="Dashboard"),
     path('admin/', admin.site.urls),
 ]

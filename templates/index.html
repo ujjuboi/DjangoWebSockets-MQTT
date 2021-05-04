@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,4 +51,44 @@
     </footer>
 </body>
 </html>
+ -->
 
+
+{% extends 'base.html' %}
+{% load static %}
+{%block title%}
+First Page
+{%endblock title%}
+{%block css%}
+{%endblock css%}
+<!-- Image and text -->
+{%block content%}
+<nav class="navbar" style="border-bottom: 2px solid rgb(124, 103, 72);">
+        <div style="width: 1313px; margin:auto">
+        <a class="navbar-brand" href="#">
+          <!-- <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+          <h2 style="color:rgb(124, 103, 72);">Get Your Data</h2>
+        </a>
+            <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px" href="{% url 'login' %}">Login</a>
+            <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px" href="{% url 'login' %}">SignUp</a>
+        
+     </div>
+    </nav>
+
+  <div class="mt-5" style="max-width: 1313px; margin:auto">
+   
+        <div class="row">
+            <div class="col-7">
+                <h2 style="color:rgb(124, 103, 72);">Worried about installing new sensors
+                    <br> every time you want to do a project in it?</h2>
+                <br>
+                <br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis exercitationem, expedita quod cumque quam sapiente ducimus earum recusandae inventore delectus cupiditate aspernatur! Eaque perspiciatis optio voluptas omnis, expedita vero repudiandae.</p>
+            </div>
+            <div class="col-5">
+                <img src="{% static 'images/imageSensor.png' %}" alt="..."style= "height: 277px;" >
+            </div>
+        </div>
+
+  </div>
+  {%endblock content%}

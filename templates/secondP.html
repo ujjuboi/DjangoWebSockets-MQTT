@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Second Page
+{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block content %}
+<nav class="navbar" style="border-bottom: 2px solid rgb(124, 103, 72);">
+    <div style="width: 1313px; margin:auto">
+    <a class="navbar-brand" href="#">
+      <!-- <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+      <h2 style="color:rgb(124, 103, 72);">Get Your Data</h2>
+    </a>
+        <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px">{{user.username}}</a>
+ </div>
+</nav>
+<div class="mt-5" style="max-width: 1313px; margin:auto">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="color: rgb(124, 103, 72);"> Your selected sensors</h3>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action ">
+                  Sensor A
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Sensor B</a>
+                <a href="#" class="list-group-item list-group-item-action">Sensor C</a>
+                <a href="#" class="list-group-item list-group-item-action">Sensor D</a>
+                <a href="#" class="list-group-item list-group-item-action ">Sensor E</a>
+              </div>
+        </div>
+        <div class="col-6">
+            <h3 style="color: rgb(124, 103, 72);"> Available Sensors</h3>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action ">
+                  Sensor A
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Sensor B</a>
+                <a href="#" class="list-group-item list-group-item-action">Sensor C</a>
+                <a href="#" class="list-group-item list-group-item-action">Sensor D</a>
+                <a href="#" class="list-group-item list-group-item-action ">Sensor E</a>
+              </div>
+        </div>
+    </div>
+</div>
+<h1>{{user.id}}</h1>
+{%endblock content%}

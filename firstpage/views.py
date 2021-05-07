@@ -14,7 +14,13 @@ def login_view(request):
 		password = form.cleaned_data.get("password")
 		user = authenticate(username = username, password = password)
 		login(request, user)
-		return redirect("/")
+		# if request.user.is_authenticated:
+		# 		print(request.user.id)
+		# 		context={'user' : request.user}
+		# 		return render(request,'secondP.html', context)
+		# else:
+		# 	return redirect("/")
+		return redirect('/second')
 	return render(request, "forms.html", {
 		"form" : form,
 		"title" : "Login",

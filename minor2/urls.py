@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('firstpage.urls')),
     path('graph/', Graph, name="Dashboard"),
     path('admin/', admin.site.urls),
+    path('second/',include('secondPage.urls')),
 ]

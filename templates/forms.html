@@ -60,7 +60,7 @@ body {
         <h2 class="form-signin-heading">{{title}}</h2>
         {{form.as_p }}
         </label><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{{title}}</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="Location.href='/'">{{title}}</button>
         <br>
         {% if title == "Login" %}<h5>Not Registered? <a href = "/register">Register Here</a></h5>{% endif %}
         {% if title == "Register" %}<h5>Already Registered? <a href = "/login">Login Here</a></h5>{% endif %}

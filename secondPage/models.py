@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 class SensorData(models.Model):
     sensorName = models.CharField(max_length = 50)
+    def __str__(self):
+        return f"{self.sensorName}"
 
 class UserSensor(models.Model):
     Uid = models.ForeignKey(User, on_delete=models.CASCADE)

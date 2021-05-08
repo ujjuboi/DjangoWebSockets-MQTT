@@ -12,8 +12,9 @@ Second Page
       <!-- <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> -->
       <h2 style="color:rgb(124, 103, 72);">Get Your Data</h2>
     </a>
+    <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px" href="{% url 'logout' %}">Logout</a>
         <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px">{{user.username}}</a>
-        <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px" href="{% url 'logout' %}">Logout</a>
+        <span><img src="{% static 'images/Human_icom.png' %}" alt="..."style= "height: 38px; float : right" ></span>
  </div>
 </nav>
 <div class="mt-5" style="max-width: 1313px; margin:auto">
@@ -32,7 +33,7 @@ Second Page
         </div>
         <div class="col-6">
             <h3 style="color: rgb(124, 103, 72);"> Available Sensors</h3>
-            <div class="list-group">
+            <!-- <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action ">
                   Sensor A
                 </a>
@@ -40,7 +41,12 @@ Second Page
                 <a href="#" class="list-group-item list-group-item-action">Sensor C</a>
                 <a href="#" class="list-group-item list-group-item-action">Sensor D</a>
                 <a href="#" class="list-group-item list-group-item-action ">Sensor E</a>
-              </div>
+              </div> -->
+              <form action = "" method = "post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
 </div>

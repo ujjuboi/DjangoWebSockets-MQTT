@@ -21,7 +21,7 @@ Second Page
     <div class="row">
         <div class="col-6">
             <h3 style="color: rgb(124, 103, 72);"> Your selected sensors</h3>
-            <div class="list-group">
+            <!-- <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action ">
                   Sensor A
                 </a>
@@ -29,6 +29,11 @@ Second Page
                 <a href="#" class="list-group-item list-group-item-action">Sensor C</a>
                 <a href="#" class="list-group-item list-group-item-action">Sensor D</a>
                 <a href="#" class="list-group-item list-group-item-action ">Sensor E</a>
+              </div> -->
+              <div class="list-group">
+                {% for name in SelectedSensor %}
+                <a href="#" class="list-group-item list-group-item-action ">{{name.Sid.sensorName}}</a>
+                {% endfor %}
               </div>
         </div>
         <div class="col-6">
@@ -50,5 +55,4 @@ Second Page
         </div>
     </div>
 </div>
-<h1>{{user.id}}</h1>
 {%endblock content%}

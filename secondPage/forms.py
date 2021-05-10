@@ -16,5 +16,11 @@ class UserMapForm(forms.ModelForm):
         super(UserMapForm,self).__init__(*args,**kwargs)
         self.fields['Uid'].required = False
         self.fields['Uid'].disabled = True
-        self.fields['Sid'].required = False
-        
+        self.fields['Sid'].required = True
+        self.fields['Uid'].widget.attrs.update({
+            'class': 'form-control mt-1 ',
+        })
+        self.fields['Sid'].widget.attrs.update({
+            'class': 'form-control mt-1',
+            'placeholder' : 'please select'
+        })

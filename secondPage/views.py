@@ -33,3 +33,11 @@ def second(request):
     else:
         return redirect("/login")
 
+def sensorData(request, id):
+    if(request.method == 'GET'):
+        if(request.user.is_authenticated):
+            context = {'SensorName' : SensorData.objects.get(pk = id).sensorName};
+            return render(request, 'thirdP.html', context)
+        else:
+            return redirect("/login")
+            

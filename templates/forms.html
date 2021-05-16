@@ -2,7 +2,7 @@
 {% block css %}
 <style type="text/css">
 body {
-	background: #eee !important;
+	background: rgb(255, 255, 255) !important;
 }
 .wrapper {
 	margin-top: 80px;
@@ -11,8 +11,8 @@ body {
 .form-signin {
   padding: 15px 35px 45px;
   margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
+  background-color: rgb(255, 255, 255);
+  <!-- border: 1px solid rgba(0, 0, 0, 0.315); -->
 
   .form-signin-heading,
 	.checkbox {
@@ -60,7 +60,7 @@ body {
         <h2 class="form-signin-heading">{{title}}</h2>
         {{form.as_p }}
         </label><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="Location.href='/'">{{title}}</button>
+        <button class="btn btn-lg btn-primary btn-block"  style="background-color: rgb(124, 103, 72);" type="submit" onclick="Location.href='/'">{{title}}</button>
         <br>
         {% if title == "Login" %}<h5>Not Registered? <a href = "/register">Register Here</a></h5>{% endif %}
         {% if title == "Register" %}<h5>Already Registered? <a href = "/login">Login Here</a></h5>{% endif %}

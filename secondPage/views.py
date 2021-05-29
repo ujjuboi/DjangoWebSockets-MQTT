@@ -12,6 +12,7 @@ from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import time
 import threading
+import random
 
 # Create your views here.
 @csrf_exempt
@@ -43,10 +44,16 @@ def second(request):
         return redirect("/login")
 
 def sensorData(request, id):
-    print("--------------------------------test1-----------")
+    print("--------------------------------test1-+++++++++++++++++++++++++++----------", request, "+++++++++++++++++++")
+    print(request.method)
+    print(request.POST.get("Method"))
     if(request.method == 'GET'):
         if(request.user.is_authenticated):
-            x = UserGroup.objects.get(user = request.user).group
+            ws = UserGroup.objects.get(user = request.user)
+            x = ws.group
+            ws.flag = False
+            print(ws.flag)
+            ws.save()
             s = encryptUser(request.user, x)
             url = "ws://localhost:8000/ws/data/"+x+"/"+s+"/"
             context = {
@@ -102,12 +109,12 @@ def encryptUser(user, x):
 def eventTrigger(room_name):
     channel_layer = get_channel_layer()
     i = 0
-    while i < 10 and UserGroup.objects.get(group = room_name).flag:
+    while UserGroup.objects.get(group = room_name).flag:
         async_to_sync(channel_layer.group_send)(
             'data_%s' % room_name,
             {
                 'type': 'chat_message',
-                'message': i
+                'message': random.randint(1,100)
             }
         )
         time.sleep(1)

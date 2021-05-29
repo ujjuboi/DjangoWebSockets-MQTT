@@ -19,6 +19,20 @@ Second Page
 </nav>
 <div class="mt-5" style="max-width: 1313px; margin:auto">
     <h2 style="color: rgb(124, 103, 72);">{{SensorName}}</h2>
-
+    <p>{{url}}</p>
+</div>
+<div class="mt-5" style="max-width: 1313px; margin:auto">
+  <form action="{% url 'dis' idd %}" method = "POST">
+    {% csrf_token %}
+    <input type="hidden" name = "Method" value = "send">
+    <button type="submit" class="btn btn-dark">Send</button>
+    </form>
+    
+    <form action="{% url 'dis' idd %}" method = "POST">
+      {% csrf_token %}
+      <input type="hidden" name = "Method" value = "stop">
+      <button type="submit" class="btn btn-dark">Stop</button>
+      </form>
+      
 </div>
 {% endblock content %}

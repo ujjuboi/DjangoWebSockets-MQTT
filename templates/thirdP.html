@@ -1,11 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block head %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  var url = '{{url}}'
+  var i = 0
+  let socket        = new WebSocket(url);
+  //add websocket functions here:
+  socket.onopen     = function(e){
+      console.log("Connection open");
+  };
+  //actual updation logic: (Target specific data array)
+  socket.onmessage  = function(e){
+      const data_var = JSON.parse(e.data).message 
+      data_A.addRow([i++, data_var])
+      console.log(window.chart_div)
+      chart.draw(data_A, options);
+      console.log();
+  };
+
+  socket.onclose  = function(e){
+      console.log("Connection Closed");
+  };
+</script>
+{% endblock head %}
 {% block title %}
 Second Page
 {% endblock title %}
 {% block css %}
 {% endblock css %}
 {% block content %}
+
+<script>
+  google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBackgroundColor);
+var data_A ;
+var chart;
+var options;
+function drawBackgroundColor() {
+      data_A = new google.visualization.DataTable();
+      data_A.addColumn('number', 'X');
+      data_A.addColumn('number', 'Data');
+
+       options = {
+        hAxis: {
+          title: 'Time'
+        },
+        vAxis: {
+          title: 'Sensor value',
+          minValue : 0,
+          maxValue : 100,
+          gridlines : {
+            interval : 2
+          }
+        },
+        hAxis : {
+          minValue : 0,
+          maxValue : 100,
+          gridlines : {
+            interval : 2
+          }
+        }, 
+      }
+      chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data_A, options);
+    }
+</script>
 <nav class="navbar" style="border-bottom: 2px solid rgb(124, 103, 72);">
     <div style="width: 1313px; margin:auto">
     <a class="navbar-brand" href="#">
@@ -14,25 +74,61 @@ Second Page
     </a>
     <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px" href="{% url 'logout' %}">Logout</a>
         <a type="button" class="btn btn-link " style="float: right; color: rgb(124, 103, 72); font-weight:500; font-size:20px">{{user.username}}</a>
-        <span><img src="{% static 'images/Human_icom.png' %}" alt="..."style= "height: 38px; float : right" ></span>
+        <span class="float-right"><i class="bi bi-person-check" style="font-size: 32px; color :rgb(124, 103, 72)"></i></span>
  </div>
 </nav>
 <div class="mt-5" style="max-width: 1313px; margin:auto">
     <h2 style="color: rgb(124, 103, 72);">{{SensorName}}</h2>
-    <p>{{url}}</p>
 </div>
-<div class="mt-5" style="max-width: 1313px; margin:auto">
+<div class="mt-3" style="max-width: 1313px; margin:auto">
   <form action="{% url 'dis' idd %}" method = "POST">
     {% csrf_token %}
     <input type="hidden" name = "Method" value = "send">
-    <button type="submit" class="btn btn-dark">Send</button>
+    <span><button type="submit" class="btn btn-outline-dark">Send Data</button></span>
     </form>
     
     <form action="{% url 'dis' idd %}" method = "POST">
       {% csrf_token %}
       <input type="hidden" name = "Method" value = "stop">
-      <button type="submit" class="btn btn-dark">Stop</button>
+      <span><button type="submit" class="mt-2 btn btn-outline-dark">Stop Data</button></span>
       </form>
-      
+</div>
+<div id="chart_div" style="max-width: 1100px; margin:auto; background-color : #F5F5F5"></div>
+<h4 class="mt-5 border border-dark p-3" style="max-width: 1100px; margin:auto; color :rgb(124, 103, 72)">
+  Installation Script
+</h4>
+<div class="mt-3" style="max-width: 1100px; margin:auto; background-color : #F5F5F5">
+  <pre class = "pre-scrollable">
+    <code>
+    import json
+    import websocket
+    
+    def on_message(ws, message):
+        message = json.loads(message)
+        print (message)
+    
+    def on_error(ws, error):
+        print ("eroror:", error)
+    
+    def on_close(ws):
+        print ("### closed ###")
+        # Attemp to reconnect with 2 seconds interval
+    
+    def on_open(ws):
+        print ("### Initiating new websocket connectipython my-websocket.pyon ###")
+    
+    def initiate():
+        websocket.enableTrace(True)
+        ws = websocket.WebSocketApp({{url}},
+            on_message = on_message,
+            on_error = on_error,
+            on_close = on_close)
+        ws.on_open = on_open
+        ws.run_forever()
+    
+    if __name__ == "__main__":
+        initiate()
+    </code>
+    <pre>
 </div>
 {% endblock content %}

@@ -83,7 +83,7 @@ venv/
 ENV/ 
 env.bak/ 
 venv.bak/ 
-
+/bin
 # mkdocs documentation 
 /site 
 
@@ -106,7 +106,8 @@ Control.ca-list
 Control.ca-bundle 
 Control.system-ca-bundle 
 GitHub.sublime-settings 
-
+CACHEDIR.TAG
+pyvenv.cfg
 # Visual Studio Code # 
 .vscode/* 
 !.vscode/settings.json 
